@@ -39,11 +39,11 @@ void        print_power(double base, double exp)
 {
     int count;
     double result;
-    auto x = 4U;
+    // auto x = 4U;
 
     count = 0;
     result = 1;
-    std::cout << x << std::endl;
+    // std::cout << x << std::endl;
     while (count < exp)
     {
         result *= exp;
@@ -63,9 +63,9 @@ void        data_types_func()
     bool found;
 
     using namespace std;
-    uc = 255;
+    uc = 55;
     found = true;
-    c = 255; // max for char is 255 (ascii table)
+    c = 55; // max for char is 255 (ascii table)
     i = 23524;
     ui = -223423233;
     cout << uc << " <-uc | c-> " << c << endl;
@@ -106,6 +106,14 @@ void        print_string()
 
 }
 
+unsigned int         factorial_(unsigned int number)
+{
+    if (number > 1)
+        return (number * factorial_(number - 1));
+    else
+        return 1;
+}
+
 //  Function for hex and octal :
 
 void        print_hex_oct()
@@ -117,20 +125,22 @@ void        print_hex_oct()
     //  For converting decimal to hex :
     cout << "3732 to hex : " << hex << x << endl;
     // For converting decimal to octal :
-    cout << "3732 to hex : " << oct << x << endl;
+    cout << "3732 to oct : " << oct << x << endl;
 }
+
 
 int main()
 {
     int base;
     int exponent;
     using namespace std;
+    unsigned int ret;
 
     // std::cout << "Please enter the base :\n";
     // std::cin >> base;
     // std::cout << "Please enter the exponent :\n";
     // std::cin >> exponent;
-    // std::cout << "The result is : "<< pow(base, exponent)<< std::endl;
+    // // std::cout << "The result is : "<< pow(base, exponent)<< std::endl;
     cout << "------------------------------------"<< endl;
     example_void_func();
     cout << "This the result of power function : " << power(2, 3) << endl;
@@ -141,4 +151,7 @@ int main()
     print_string();
     cout << "-------------------------------------" << endl;
     print_hex_oct();
+    cout << "----------------fact----------------------" << endl;
+    ret = factorial_(4);
+    cout << dec << ret << endl;
 }
