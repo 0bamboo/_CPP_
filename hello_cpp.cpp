@@ -4,6 +4,8 @@
 #include <cmath>
 #include <string>
 #include <cstring>
+#include <vector>
+#include <array>
 
 // using namespace std;
 
@@ -128,6 +130,18 @@ void        print_hex_oct()
     cout << "3732 to oct : " << oct << x << endl;
 }
 
+void print_string_vector()
+{
+    using namespace std;
+    vector<string> str;
+
+    str = {"hello world", "hi"};
+    str.push_back("hi again");
+    cout << str.size() << endl;
+    cout << str[str.size() - 1] << endl;
+
+}
+
 
 int main()
 {
@@ -135,6 +149,18 @@ int main()
     int exponent;
     using namespace std;
     unsigned int ret;
+
+    // This a templitized array : array<type, size> nameofthearray;
+
+    array<int, 35> array;
+
+    array = {3,2,3,2};
+    
+    for (int i = 0; i < array.size(); i++)
+        cout << array[i] << "\t";
+    // Range-based loop 
+    for (int n : array)
+        cout << n << "\t";
 
     // std::cout << "Please enter the base :\n";
     // std::cin >> base;
@@ -154,4 +180,6 @@ int main()
     cout << "----------------fact----------------------" << endl;
     ret = factorial_(4);
     cout << dec << ret << endl;
+    cout << "------------------------------------\n";
+    print_string_vector();
 }
