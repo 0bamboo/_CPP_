@@ -6,6 +6,7 @@
 #include <cstring>
 #include <vector>
 #include <array>
+#include <fstream>
 
 // using namespace std;
 
@@ -142,6 +143,17 @@ void print_string_vector()
 
 }
 
+void    create_a_file()
+{
+    std::ofstream file;
+
+    file.open("test.c");
+    if (file.is_open())
+        cout << "File succefully opened .\n";
+    file << "#include <stdio.h>\nint main(){\nprintf(\"hello from file creatd using cpp\");}";
+    file.close();
+}
+
 
 int main()
 {
@@ -182,4 +194,6 @@ int main()
     cout << dec << ret << endl;
     cout << "------------------------------------\n";
     print_string_vector();
+    cout << "-------------------------------------\n";
+    create_a_file();
 }
