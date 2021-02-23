@@ -143,15 +143,37 @@ void print_string_vector()
 
 }
 
-void    create_a_file()
+bool    create_a_file()
 {
     std::ofstream file;
+    int ret;
+
+    using namespace std;
 
     file.open("test.c");
-    if (file.is_open())
+    ret = file.is_open();
+    if (ret)
         cout << "File succefully opened .\n";
     file << "#include <stdio.h>\nint main(){\nprintf(\"hello from file creatd using cpp\");}";
     file.close();
+    return ret;
+}
+
+
+void        read_from_a_file()
+{
+    std::ifstream file("test.c"); // or file.open("test.c")
+    std::string input;
+    std::vector<std::string> data;
+    std::string line;
+
+    // U can use getline for reading a line each time
+    getline(file, line);
+    std::cout << line << std::endl;
+    while (file >> input)
+        data.push_back(input);
+    for (std::string line : data) // range-based loop
+        std::cout << " string : " << line << std::endl;
 }
 
 
@@ -171,8 +193,8 @@ int main()
     for (int i = 0; i < array.size(); i++)
         cout << array[i] << "\t";
     // Range-based loop 
-    for (int n : array)
-        cout << n << "\t";
+    // for (int n : array)
+    //     cout << n << "\t";
 
     // std::cout << "Please enter the base :\n";
     // std::cin >> base;
@@ -195,5 +217,10 @@ int main()
     cout << "------------------------------------\n";
     print_string_vector();
     cout << "-------------------------------------\n";
-    create_a_file();
+    if (create_a_file())
+    {
+        cout << "------------Read from file-----------------\n";
+        read_from_a_file();
+    }
+
 }
