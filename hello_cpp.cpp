@@ -176,6 +176,12 @@ void        read_from_a_file()
         std::cout << " string : " << line << std::endl;
 }
 
+void pass_(int &a)
+{
+    a = 5;
+    std::cout << a << std::endl;
+}
+
 
 int main()
 {
@@ -183,9 +189,14 @@ int main()
     int exponent;
     using namespace std;
     unsigned int ret;
+    int a[]={1,2,3,4};
+    int b = 4;
+
+    // Pass by reference:
+    pass_(b);
+    cout << b << endl;
 
     // This a templitized array : array<type, size> nameofthearray;
-
     array<int, 35> array;
 
     array = {3,2,3,2};
