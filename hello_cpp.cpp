@@ -175,11 +175,51 @@ void        read_from_a_file()
     for (std::string line : data) // range-based loop
         std::cout << " string : " << line << std::endl;
 }
+  
+
+//  Example of functions that use pass a variable by reference :
 
 void pass_(int &a)
 {
     a = 5;
     std::cout << a << std::endl;
+}
+
+void swap_vectors_by_reference(std::string &a, std::string &b)
+{
+    std::string tmp;
+
+    tmp = a;
+    a = b;
+    b = tmp;
+}
+
+// Example of overloads funtions :
+
+struct Rect
+{
+    int length;
+    int width;
+};
+
+int area(int length, int width)
+{
+    return length*width;
+}
+
+int area(int length)
+{
+    return length*length;
+}
+
+int area(Rect rect)
+{
+    return rect.length * rect.width;
+}
+
+int area_(int a = 11)
+{
+    return a * a;
 }
 
 
@@ -191,11 +231,27 @@ int main()
     unsigned int ret;
     int a[]={1,2,3,4};
     int b = 4;
+    string first_name = "abdennacer";
+    string last_name = "ama";
 
     // Pass by reference:
     pass_(b);
-    cout << b << endl;
+    for(int s : a)
+        cout << s << "\t";
+    swap_vectors_by_reference(first_name, last_name);
+    cout << first_name << " " << last_name << endl;
 
+    // Overloads functions
+
+    Rect r;
+    r.length = 10;
+    r.width = 10;
+    cout << "Function area that uses struct as parameter : " << area(r) << endl;
+    cout << "Funcion area that uses two int variables as parameter : " << area(b, b) << endl;
+    cout << "Function area that uses one int variable as parameter : " << area(b) << endl;
+
+    // Other option besides overload is default vlaue;
+    cout << "Function area that uses default value : " << area_() << endl;
     // This a templitized array : array<type, size> nameofthearray;
     array<int, 35> array;
 
