@@ -217,9 +217,24 @@ int area(Rect rect)
     return rect.length * rect.width;
 }
 
-int area_(int a = 11)
+
+//  How to create a namespace :
+namespace hello_ns
 {
-    return a * a;
+    int area_(int a = 11)
+    {
+        return a * a;
+    }
+    
+}
+
+// How to create a function template :
+
+template <typename T>
+
+T template_function(T &x)
+{
+    return x;
 }
 
 
@@ -241,6 +256,9 @@ int main()
     swap_vectors_by_reference(first_name, last_name);
     cout << first_name << " " << last_name << endl;
 
+    // Example of template function :
+    cout << "This a templatize function using an int var : " << template_function(b) << endl;
+    cout << " For string var : " << template_function(first_name) << endl;
     // Overloads functions
 
     Rect r;
@@ -251,14 +269,16 @@ int main()
     cout << "Function area that uses one int variable as parameter : " << area(b) << endl;
 
     // Other option besides overload is default vlaue;
-    cout << "Function area that uses default value : " << area_() << endl;
-    // This a templitized array : array<type, size> nameofthearray;
-    array<int, 35> array;
+    cout << "Function area that uses default value : " << hello_ns::area_() << endl;
 
-    array = {3,2,3,2};
+    // This a templitized array : array<type, size> nameofthearray;
+    array<int, 35> array = {3,2,3,2};
+
+    // array = {3,2,3,2};
     
     for (int i = 0; i < array.size(); i++)
         cout << array[i] << "\t";
+    
     // Range-based loop 
     // for (int n : array)
     //     cout << n << "\t";
