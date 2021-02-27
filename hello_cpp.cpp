@@ -237,9 +237,64 @@ T template_function(T &x)
     return x;
 }
 
+// Creating a struct with private access modifier : 
+
+struct User_s
+{
+    std::string name;
+    std::string last_name;
+    // if you want to the get the value of this private variable you need for example to define another function and return this private variable :
+    std::string get_private()
+    {
+        return private_var;
+    }
+    private:
+        // the in line assignement is reserved for c++ 11
+        std::string private_var = "hello i'm private_var ";
+};
+
+// Creating a Class :
+
+class Class_user
+{
+    // this is how to declare a private variable in class its not like struct no need of using private flag 
+    std::string this_a_private_var;
+
+    // for creating public elements :
+    public:
+        std::string hello_from_class;
+        std::string something;
+};
+
+class User
+{
+    public:
+        std::string user_name;
+        std::string user_l_name;
+};
+
+int add_user_if_not_exist(std::vector<User> &users, User user)
+{
+    int i;
+
+    i = 0;
+    while (i < users.size())
+    {
+        if (users[i].user_l_name == user.user_l_name && users[i].user_name == user.user_name)
+            return 1;
+        i++;
+    }
+    users.push_back(user);
+    return 0;
+}
+
 
 int main()
-{
+{   
+    // creating an instance of struct :
+    User_s user_1;
+    // Creating an instance of class :
+    Class_user class_instance;
     int base;
     int exponent;
     using namespace std;
@@ -259,8 +314,8 @@ int main()
     // Example of template function :
     cout << "This a templatize function using an int var : " << template_function(b) << endl;
     cout << " For string var : " << template_function(first_name) << endl;
-    // Overloads functions
-
+    
+    // Overloads functions/
     Rect r;
     r.length = 10;
     r.width = 10;
@@ -268,6 +323,14 @@ int main()
     cout << "Funcion area that uses two int variables as parameter : " << area(b, b) << endl;
     cout << "Function area that uses one int variable as parameter : " << area(b) << endl;
 
+    // You can not access to the vars inside the private modifier in the struct User :
+    // cout << "something_else : " << user_1.private_var << endl;
+    user_1.name = "paayk";
+    user_1.last_name = "chihaja";
+    cout << "name : " << user_1.name << "\t";
+    cout << "last_name : " << user_1.last_name << "\t";
+    cout << "private_var : " << user_1.get_private() << "\n";
+    
     // Other option besides overload is default vlaue;
     cout << "Function area that uses default value : " << hello_ns::area_() << endl;
 
@@ -310,4 +373,41 @@ int main()
         read_from_a_file();
     }
 
+    // This is an an example of using variable from the class we created :
+    cout << "Enter something for the variable on class : ";
+    cin >> class_instance.something;
+    cout << class_instance.something << endl;
+
+    //  This is a mini exo using classes and vectors :
+    vector<User> users;
+    User user1;
+    User user2;
+    User user3;
+    User user;
+
+    user1.user_name = "omar";
+    user1.user_l_name = "piko";
+
+    user2.user_name = "paayk";
+    user2.user_l_name = "paayk";
+
+    user3.user_name = "abdennacer";
+    user3.user_l_name = "ama";
+
+    users.push_back(user1);
+    users.push_back(user2);
+    users.push_back(user3);
+
+    cout << "Enter the name of the user : ";
+    cin >> user.user_name;
+    cout << "\n";
+    cout << "Enter the last name of the user :";
+    cin >> user.user_l_name;
+    if (add_user_if_not_exist(users, user))
+        cout << "The user already exists." << endl;
+    else
+        cout << "The user has been added ." << endl;
+    cout << " The users are :" << endl<< endl;
+    for (int i = 0; i < users.size(); i++)
+        cout << users[i].user_name << "\t" << users[i].user_l_name << endl;
 }
