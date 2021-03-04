@@ -243,7 +243,7 @@ struct User_s
 {
     std::string name;
     std::string last_name;
-    // if you want to the get the value of this private variable you need for example to define another function and return this private variable :
+    // if you want to get the value of this private variable you need for example to define another function and return this private variable :
     std::string get_private()
     {
         return private_var;
@@ -264,13 +264,38 @@ class Class_user
     public:
         std::string hello_from_class;
         std::string something;
-};
+        
+        // This is how to create a constructor in cpp : you give it the name of the class
+        Class_user()
+        {
+            std::cout << "when object is created , this construct will execute" << std::endl;
+
+            // If you want to use the variables that you created in the class we use them like this : {the same for private variables}
+            this->hello_from_class = "|my value changed using {this} way|";
+        }
+
+        // This is how to create a destructor : you give it also the name of the class
+        ~Class_user()
+        {
+            std::cout << "class destroyed" << std::endl;
+        }
+};  
 
 class User
 {
     public:
         std::string user_name;
         std::string user_l_name;
+
+        void print_something()
+        {
+            std::cout << "hello from something not understandable" << std::endl;
+        }
+
+        // ~another_thing()
+        // {
+        //     std::cout << "hello";
+        // }
 };
 
 int add_user_if_not_exist(std::vector<User> &users, User user)
@@ -292,122 +317,123 @@ int add_user_if_not_exist(std::vector<User> &users, User user)
 int main()
 {   
     // creating an instance of struct :
-    User_s user_1;
-    // Creating an instance of class :
-    Class_user class_instance;
-    int base;
-    int exponent;
-    using namespace std;
-    unsigned int ret;
-    int a[]={1,2,3,4};
-    int b = 4;
-    string first_name = "abdennacer";
-    string last_name = "ama";
+    // User_s user_1;
+    // // Creating an instance of class :
+    // Class_user class_instance;
+    // int base;
+    // int exponent;
+    // using namespace std;
+    // unsigned int ret;
+    // int a[]={1,2,3,4};
+    // int b = 4;
+    // string first_name = "abdennacer";
+    // string last_name = "ama";
 
-    // Pass by reference:
-    pass_(b);
-    for(int s : a)
-        cout << s << "\t";
-    swap_vectors_by_reference(first_name, last_name);
-    cout << first_name << " " << last_name << endl;
+    // // Pass by reference:
+    // pass_(b);
+    // for(int s : a)
+    //     cout << s << "\t";
+    // swap_vectors_by_reference(first_name, last_name);
+    // cout << first_name << " " << last_name << endl;
 
-    // Example of template function :
-    cout << "This a templatize function using an int var : " << template_function(b) << endl;
-    cout << " For string var : " << template_function(first_name) << endl;
+    // // Example of template function :
+    // cout << "This a templatize function using an int var : " << template_function(b) << endl;
+    // cout << " For string var : " << template_function(first_name) << endl;
     
-    // Overloads functions/
-    Rect r;
-    r.length = 10;
-    r.width = 10;
-    cout << "Function area that uses struct as parameter : " << area(r) << endl;
-    cout << "Funcion area that uses two int variables as parameter : " << area(b, b) << endl;
-    cout << "Function area that uses one int variable as parameter : " << area(b) << endl;
+    // // Overloads functions/
+    // Rect r;
+    // r.length = 10;
+    // r.width = 10;
+    // cout << "Function area that uses struct as parameter : " << area(r) << endl;
+    // cout << "Funcion area that uses two int variables as parameter : " << area(b, b) << endl;
+    // cout << "Function area that uses one int variable as parameter : " << area(b) << endl;
 
-    // You can not access to the vars inside the private modifier in the struct User :
-    // cout << "something_else : " << user_1.private_var << endl;
-    user_1.name = "paayk";
-    user_1.last_name = "chihaja";
-    cout << "name : " << user_1.name << "\t";
-    cout << "last_name : " << user_1.last_name << "\t";
-    cout << "private_var : " << user_1.get_private() << "\n";
+    // // You can not access to the vars inside the private modifier in the struct User :
+    // // cout << "something_else : " << user_1.private_var << endl;
+    // user_1.name = "paayk";
+    // user_1.last_name = "chihaja";
+    // cout << "name : " << user_1.name << "\t";
+    // cout << "last_name : " << user_1.last_name << "\t";
+    // cout << "private_var : " << user_1.get_private() << "\n";
     
-    // Other option besides overload is default vlaue;
-    cout << "Function area that uses default value : " << hello_ns::area_() << endl;
+    // // Other option besides overload is default vlaue;
+    // cout << "Function area that uses default value : " << hello_ns::area_() << endl;
 
-    // This a templitized array : array<type, size> nameofthearray;
-    array<int, 35> array = {3,2,3,2};
+    // // This a templitized array : array<type, size> nameofthearray;
+    // array<int, 35> array = {3,2,3,2};
 
-    // array = {3,2,3,2};
+    // // array = {3,2,3,2};
     
-    for (int i = 0; i < array.size(); i++)
-        cout << array[i] << "\t";
+    // for (int i = 0; i < array.size(); i++)
+    //     cout << array[i] << "\t";
     
-    // Range-based loop 
-    // for (int n : array)
-    //     cout << n << "\t";
+    // // Range-based loop 
+    // // for (int n : array)
+    // //     cout << n << "\t";
 
-    // std::cout << "Please enter the base :\n";
-    // std::cin >> base;
-    // std::cout << "Please enter the exponent :\n";
-    // std::cin >> exponent;
-    // // std::cout << "The result is : "<< pow(base, exponent)<< std::endl;
-    cout << "------------------------------------"<< endl;
-    example_void_func();
-    cout << "This the result of power function : " << power(2, 3) << endl;
-    print_power(3, 3);
-    cout << "---------------------------------------" << endl;
-    data_types_func();
-    cout << "--------------------------------------" << endl;
-    print_string();
-    cout << "-------------------------------------" << endl;
-    print_hex_oct();
-    cout << "----------------fact----------------------" << endl;
-    ret = factorial_(4);
-    cout << dec << ret << endl;
-    cout << "------------------------------------\n";
-    print_string_vector();
-    cout << "-------------------------------------\n";
-    if (create_a_file())
-    {
-        cout << "------------Read from file-----------------\n";
-        read_from_a_file();
-    }
+    // // std::cout << "Please enter the base :\n";
+    // // std::cin >> base;
+    // // std::cout << "Please enter the exponent :\n";
+    // // std::cin >> exponent;
+    // // // std::cout << "The result is : "<< pow(base, exponent)<< std::endl;
+    // cout << "------------------------------------"<< endl;
+    // example_void_func();
+    // cout << "This the result of power function : " << power(2, 3) << endl;
+    // print_power(3, 3);
+    // cout << "---------------------------------------" << endl;
+    // data_types_func();
+    // cout << "--------------------------------------" << endl;
+    // print_string();
+    // cout << "-------------------------------------" << endl;
+    // print_hex_oct();
+    // cout << "----------------fact----------------------" << endl;
+    // ret = factorial_(4);
+    // cout << dec << ret << endl;
+    // cout << "------------------------------------\n";
+    // print_string_vector();
+    // cout << "-------------------------------------\n";
+    // if (create_a_file())
+    // {
+    //     cout << "------------Read from file-----------------\n";
+    //     read_from_a_file();
+    // }
 
-    // This is an an example of using variable from the class we created :
-    cout << "Enter something for the variable on class : ";
-    cin >> class_instance.something;
-    cout << class_instance.something << endl;
+    // // This is an an example of using variable from the class we created :
+    // cout << "Enter something for the variable on class : ";
+    // cin >> class_instance.something;
+    // cout << class_instance.something << endl;
 
-    //  This is a mini exo using classes and vectors :
-    vector<User> users;
-    User user1;
-    User user2;
-    User user3;
-    User user;
+    // //  This is a mini exo using classes and vectors :
+    // vector<User> users;
+    // User user1;
+    // User user2;
+    // User user3;
+    // User user;
 
-    user1.user_name = "omar";
-    user1.user_l_name = "piko";
+    // user1.user_name = "omar";
+    // user1.user_l_name = "piko";
 
-    user2.user_name = "paayk";
-    user2.user_l_name = "paayk";
+    // user2.user_name = "paayk";
+    // user2.user_l_name = "paayk";
 
-    user3.user_name = "abdennacer";
-    user3.user_l_name = "ama";
+    // user3.user_name = "abdennacer";
+    // user3.user_l_name = "ama";
 
-    users.push_back(user1);
-    users.push_back(user2);
-    users.push_back(user3);
+    // users.push_back(user1);
+    // users.push_back(user2);
+    // users.push_back(user3);
 
-    cout << "Enter the name of the user : ";
-    cin >> user.user_name;
-    cout << "\n";
-    cout << "Enter the last name of the user :";
-    cin >> user.user_l_name;
-    if (add_user_if_not_exist(users, user))
-        cout << "The user already exists." << endl;
-    else
-        cout << "The user has been added ." << endl;
-    cout << " The users are :" << endl<< endl;
-    for (int i = 0; i < users.size(); i++)
-        cout << users[i].user_name << "\t" << users[i].user_l_name << endl;
+    // cout << "Enter the name of the user : ";
+    // cin >> user.user_name;
+    // cout << "\n";
+    // cout << "Enter the last name of the user :";
+    // cin >> user.user_l_name;
+    // if (add_user_if_not_exist(users, user))
+    //     cout << "The user already exists." << endl;
+    // else
+    //     cout << "The user has been added ." << endl;
+    // cout << " The users are :" << endl<< endl;
+    // for (int i = 0; i < users.size(); i++)
+    //     cout << users[i].user_name << "\t" << users[i].user_l_name << endl;
+    User please_do_not_print_something();
 }
